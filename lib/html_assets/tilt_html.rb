@@ -14,7 +14,7 @@ module HtmlAssets
       <<-TEMPLATE
         (function() {
           this.#{template_namespace} || (this.#{template_namespace} = {});
-          this.#{template_namespace}[#{template_path.name}] = function() { return "#{data.gsub('"', '\"').split("\n").join("\" + \"")}" };
+          this.#{template_namespace}[#{template_path.name}] = function() { return "#{data.gsub('"', '\"').split("\n").join("\\n\" + \"")}" };
           return this.#{template_namespace}[#{template_path.name}];
         }).call(this);
       TEMPLATE
