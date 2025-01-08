@@ -19,5 +19,5 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_runtime_dependency 'tilt'
-  s.add_runtime_dependency 'sprockets', '>= 2.0.3'
+  s.add_runtime_dependency 'sprockets', '~> 3.0'
 end
