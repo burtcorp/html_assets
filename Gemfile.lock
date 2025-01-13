@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    html_assets (1.0.0.rc.1)
+    html_assets (1.0.0)
       sprockets (~> 3.0)
       tilt
 
