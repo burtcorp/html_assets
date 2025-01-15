@@ -7,14 +7,14 @@ module HtmlAssets
       'application/javascript'
     end
 
-    def evaluate(scope, locals, &block)
-      template_path = TemplatePath.new(scope)
+    def self.call(input)
+      template_path = TemplatePath.new(input[:name])
       template_namespace = HtmlAssets::Config.template_namespace
 
       <<-TEMPLATE
         (function() {
           this.#{template_namespace} || (this.#{template_namespace} = {});
-          this.#{template_namespace}[#{template_path.name}] = function() { return "#{data.gsub('"', '\"').split("\n").join("\\n\" + \"")}" };
+          this.#{template_namespace}[#{template_path.name}] = function() { return "#{input[:data].gsub('"', '\"').split("\n").join("\\n\" + \"")}" };
           return this.#{template_namespace}[#{template_path.name}];
         }).call(this);
       TEMPLATE
@@ -25,8 +25,8 @@ module HtmlAssets
     def prepare; end
 
     class TemplatePath
-      def initialize(scope)
-        self.template_path = scope.logical_path
+      def initialize(template_path)
+        self.template_path = template_path
       end
 
       def name

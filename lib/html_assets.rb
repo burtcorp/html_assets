@@ -8,6 +8,7 @@ module HtmlAssets
     require 'html_assets/engine'
   else
     require 'sprockets'
-    Sprockets.register_engine '.html', TiltHtml
+    Sprockets.register_mime_type 'text/html', extensions: ['.html']
+    Sprockets.register_transformer 'text/html', 'application/javascript', TiltHtml
   end
 end
